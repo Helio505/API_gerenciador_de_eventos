@@ -22,7 +22,9 @@ O script inserir.py, serve para popular o banco de dados, para realizar testes. 
 ## Especificações do Projeto/API
 - Python 3.9.6
 - Só foi testado no Windows 10.
-- Utilizei o framework Flask
+- Utiliza o framework Flask
+- Utiliza SQLAlchemy e SQLite 3, para o banco de dados e ORM.
+- Utiliza Basic Authentication
 - A API está rodando em http://127.0.0.1:5000
 - Utilizei o Postman no meu design
 - Bibliotecas utilizadas:
