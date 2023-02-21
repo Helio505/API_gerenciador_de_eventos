@@ -1,5 +1,9 @@
 # API para Gerenciador de Eventos
 
+### Passos para execução
+- Instalar os requerimentos necessários.
+- Escolher um request de um dos [exemplos]()
+
 ### Virtualenv
 Estou usando um virtual environment. Para criar um, basta inserir o comando `python -m venv env` e ele será criado.
 Ai basta ativar. No meu sistema o comando `cd .\env\Scripts\; .\activate; cd ..; cd ..` no Windows Terminal, já o ativa. Mas dependendo do sistema operacional ou terminal, outro comando deve ser usado para ativar.
@@ -17,9 +21,55 @@ O script inserir.py, serve para popular o banco de dados, para realizar testes. 
 - Python 3.9.6
 - Só foi testado no Windows 10.
 - Utilizei o framework Flask
+- A API está rodando em http://127.0.0.1:5000
 - Bibliotecas utilizadas:
     - Flask 2.2.3
     - Flask-HTTPAuth 4.7.0
     - Flask-RESTful 0.3.9
     - SQLAlchemy 2.0.4
     - SQLite 3.35.5 (padrão)
+
+
+### Exemplos para requests que necessitam de dados (assumo que o banco de dados foi populado com `inserir.py`):
+
+#### POST /local
+```json
+{
+    "id": 5,
+    "nome": "DDDDDDDDDD",
+    "endereço": "EEEEEEEEEEEEEEEEE",
+    "capacidade_maxima": 999
+}
+```
+
+POST /agendamento
+```json
+{
+    "id": 5,
+    "nome_responsável": "Maria",
+    "data_hora_inicio": "2023-02-19 19:12:39.363020",
+    "data_hora_termino": "2026-05-23 23:59:59.000000",
+    "id_local": 4
+}
+```
+
+PUT /local/{id}
+```json
+{
+    "id": 4,
+    "nome": "DDDDDDDDDD",
+    "endereço": "EEEEEEEEEEEEEEEEE",
+    "capacidade_maxima": 999
+}
+```
+
+PUT /agendamento/{id}
+```json
+{
+    "id": 3,
+    "nome_responsável": "Naruto Uzumaki",
+    "data_hora_inicio": "2023-02-19 19:12:39.363020",
+    "data_hora_termino": "2024-02-19 19:12:39.363020",
+    "id_local": 4
+}
+```
