@@ -50,7 +50,7 @@ def verify(username, password):
 @app.route('/local', methods=['GET'])
 @auth.login_required
 def get_todos_locais():
-    # """ Devolve a lista com todos os Locais. """
+    """ Devolve a lista com todos os Locais. """
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -62,10 +62,6 @@ def get_todos_locais():
             "endereço":i.endereço, "capacidade_maxima": i.capacidade_maxima
         }
         locais.append(local)
-
-    # locais = []
-    # for i in session.query(Local).order_by(Local.id):
-    #     locais.append(i)
     
     return make_response(
         jsonify(
@@ -77,7 +73,7 @@ def get_todos_locais():
 @app.route('/agendamento', methods=['GET'])
 @auth.login_required
 def get_todos_agendamentos():
-    # """ Devolve a lista com todos os Agendamentos. """
+    """ Devolve a lista com todos os Agendamentos. """
 
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -101,6 +97,7 @@ def get_todos_agendamentos():
 @app.route('/local', methods=['POST'])
 @auth.login_required
 def post_local():
+    """ Insere um local """
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -115,7 +112,7 @@ def post_local():
     
     return make_response(
         jsonify(
-            message="Lista com todos os locais",
+            message="Local inserido com sucesso",
             data=local_json
         )
     )
@@ -123,6 +120,7 @@ def post_local():
 @app.route('/agendamento', methods=['POST'])
 @auth.login_required
 def post_agendamento():
+    """ Insere um agendamento """
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -147,7 +145,7 @@ def post_agendamento():
 
     return make_response(
         jsonify(
-            message="Lista com todos os locais",
+            message="Agendamento inserido com sucesso",
             data=agendamento_json
         )
     )
@@ -155,6 +153,7 @@ def post_agendamento():
 @app.route('/local', methods=['DELETE'])
 @auth.login_required
 def deletar_locais():
+    """ Deleta todos os locais """
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -164,14 +163,15 @@ def deletar_locais():
     
     return make_response(
         jsonify(
-            message="Lista com todos os locais",
-            data={"resultado": "sucesso em deletar"}
+            message="Todos os locais foram deletados",
+            data={"resultado": "sucesso em deletar todos os locais"}
         )
     )
 
 @app.route('/agendamento', methods=['DELETE'])
 @auth.login_required
 def deletar_agendamentos():
+    """ Deleta todos os agendamentos """
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -181,8 +181,8 @@ def deletar_agendamentos():
     
     return make_response(
         jsonify(
-            message="Lista com todos os locais",
-            data={"resultado": "sucesso em deletar"}
+            message="Todos os agendamentos foram deletados",
+            data={"resultado": "sucesso em deletar todos os agendamentos"}
         )
     )
 
@@ -190,6 +190,7 @@ def deletar_agendamentos():
 class Local_by_id(Resource):
     @auth.login_required
     def get(self, id):
+        """ Pega um local por id """
         Session = sessionmaker(bind=engine)
         session = Session()
         
@@ -202,12 +203,13 @@ class Local_by_id(Resource):
 
         return make_response(
             jsonify(
-                message="Success",
+                message="Visualizando um local de acordo com o id",
                 data=local_json
             )
         )
     @auth.login_required
     def delete(self, id):
+        """ Deleta um local por id """
         Session = sessionmaker(bind=engine)
         session = Session()
 
@@ -218,12 +220,13 @@ class Local_by_id(Resource):
         
         return make_response(
             jsonify(
-                message="Lista com todos os locais",
-                data={"resultado": "sucesso em deletar"}
+                message="Deletou um local de acordo com o id",
+                data={"resultado": "sucesso em deletar um local"}
             )
         )
     @auth.login_required
     def put(self, id):
+        """ Modifica um local por id """
         Session = sessionmaker(bind=engine)
         session = Session()
 
@@ -239,8 +242,8 @@ class Local_by_id(Resource):
         
         return make_response(
             jsonify(
-                message="Lista com todos os locais",
-                data={"resultado": "sucesso em deletar"}
+                message="Modificou um local de acordo com o id",
+                data={"resultado": "sucesso em modificar um local"}
             )
         )
 api.add_resource(Local_by_id, "/local/<int:id>")
@@ -248,6 +251,7 @@ api.add_resource(Local_by_id, "/local/<int:id>")
 class Agendamento_by_id(Resource):
     @auth.login_required
     def get(self, id):
+        """ Pega um agendamento por id """
         Session = sessionmaker(bind=engine)
         session = Session()
         
@@ -263,12 +267,13 @@ class Agendamento_by_id(Resource):
         
         return make_response(
             jsonify(
-                message="Success",
+                message="Visualizando um agendamento de acordo com o id",
                 data=agendamento_json
             )
         )
     @auth.login_required
     def delete(self, id):
+        """ Deleta um agendamento por id """
         Session = sessionmaker(bind=engine)
         session = Session()
 
@@ -279,12 +284,13 @@ class Agendamento_by_id(Resource):
         
         return make_response(
             jsonify(
-                message="Lista com todos os locais",
-                data={"resultado": "sucesso em deletar"} 
+                message="Deletou um agendamento de acordo com o id",
+                data={"resultado": "sucesso em deletar um agendamento"} 
             )
         )
     @auth.login_required
     def put(self, id):
+        """ Modifica um agendamento por id """
         Session = sessionmaker(bind=engine)
         session = Session()
 
@@ -307,8 +313,8 @@ class Agendamento_by_id(Resource):
         
         return make_response(
             jsonify(
-                message="Lista com todos os locais",
-                data={"resultado": "sucesso em deletar"}
+                message="Modificou um agendamento de acordo com o id",
+                data={"resultado": "sucesso em modificar um agendamento"}
             )
         )
 api.add_resource(Agendamento_by_id, "/agendamento/<int:id>")
@@ -316,6 +322,7 @@ api.add_resource(Agendamento_by_id, "/agendamento/<int:id>")
 class Local_query(Resource):
     @auth.login_required
     def get(self):
+        """ Busca um local por (id,nome,endereço ou capacidade máxima) """
         Session = sessionmaker(bind=engine)
         session = Session()
 
@@ -343,7 +350,7 @@ class Local_query(Resource):
                     array_elementos_filtrados.append(local_filter_json)
                 return make_response(
                     jsonify(
-                    message="Sucesso, Varios elementos foram encontrados.",    
+                    message="Sucesso, Varios elementos foram encontrados de acordo com a query",    
                     data=array_elementos_filtrados
                     )
                 )
@@ -359,7 +366,7 @@ class Local_query(Resource):
                 array_elementos_filtrados.append(local_filter_json)
                 return make_response(
                     jsonify(
-                    message="Sucesso, um elemento foi encontrado.",    
+                    message="Sucesso, um elemento foi encontrado de acordo com a query",    
                     data=array_elementos_filtrados
                     )
                 )
@@ -367,7 +374,7 @@ class Local_query(Resource):
             array_elementos_filtrados = {}
             return make_response(
                     jsonify(
-                    message="Nenhum elemento foi encontrado.",    
+                    message="Nenhum elemento foi encontrado de acordo com a query",    
                     data=array_elementos_filtrados
                     )
                 )
@@ -376,6 +383,10 @@ api.add_resource(Local_query, "/local/")
 class Agendamento_query(Resource):
     @auth.login_required
     def get(self):
+        """ 
+        Busca um agendamento por (id,nome do responsável,data e hora de
+        inicio, data e hora de termino ou id do local).
+        """
         Session = sessionmaker(bind=engine)
         session = Session()
 
@@ -406,7 +417,7 @@ class Agendamento_query(Resource):
                     array_elementos_filtrados.append(agendamento_filter_json)
                 return make_response(
                     jsonify(
-                    message="Sucesso, Varios elementos foram encontrados.",    
+                    message="Sucesso, Varios elementos foram encontrados de acordo com a query",    
                     data=array_elementos_filtrados
                     )
                 )
@@ -423,7 +434,7 @@ class Agendamento_query(Resource):
                 array_elementos_filtrados.append(agendamento_filter_json)
                 return make_response(
                     jsonify(
-                    message="Sucesso, um elemento foi encontrado.",    
+                    message="Sucesso, um elemento foi encontrado de acordo com a query",    
                     data=array_elementos_filtrados
                     )
                 )
@@ -431,7 +442,7 @@ class Agendamento_query(Resource):
             array_elementos_filtrados = {}
             return make_response(
                     jsonify(
-                    message="Nenhum elemento foi encontrado.",    
+                    message="Nenhum elemento foi encontrado de acordo com a query",    
                     data=array_elementos_filtrados
                     )
                 )
