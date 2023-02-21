@@ -2,6 +2,7 @@
 
 ## Passos para execução
 - Instalar os requerimentos necessários.
+- Executar o arquivo [api.py](api.py)
 - Escolher um request de um dos [possíveis requests](Descri%C3%A7%C3%A3o_requests.pdf).
 - Enviar request. Se tiver body seguir os data types dos exemplos no final do README.
 

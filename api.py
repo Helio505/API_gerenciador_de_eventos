@@ -449,4 +449,4 @@ class Agendamento_query(Resource):
 api.add_resource(Agendamento_query, "/agendamento/")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
